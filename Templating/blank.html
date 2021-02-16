@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="application-name" content="{{ env.Name }}">
+		<meta name="description" content="{{ env.Name }} is a 2013 Roblox revival. We are not associated with Roblox in any shape or form.">
+		<meta name="keywords" content="{{ env.Name|lower }},roblox,revival,nostalgia,engine,classic,2013">
+		<meta name="viewport" content="width=800, height=600">
+		<title>{{ pageTitle }} - {{ env.Name }}</title>
+	</head>
+	<body>
+		<div class="container">
+			{% block content %}
+			{% endblock %}
+		</div>
+	</body>
+</html>
