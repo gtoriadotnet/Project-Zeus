@@ -5,13 +5,12 @@
 		<meta name="application-name" content="{{ env.Name }}">
 		<meta name="description" content="{{ env.Name }} is a 2013 Roblox revival. We are not associated with Roblox in any shape or form.">
 		<meta name="keywords" content="{{ env.Name|lower }},roblox,revival,nostalgia,engine,classic,2013">
-		<meta name="viewport" content="width=800, height=600">
+		<meta name="viewport" content="width=800">
 		<title>{{ pageTitle }} - {{ env.Name }}</title>
 	</head>
 	<body>
 		<div class="container">
-			{% block content %}
-			{% endblock %}
+			{{ block('content') ?? 'Failure whilst loading page content, this is most likely because you tried accessing a page that doesn\'t contain a page content block.' }}
 		</div>
 	</body>
 </html>
