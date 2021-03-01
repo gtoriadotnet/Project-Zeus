@@ -54,15 +54,43 @@
 			</div>
 		</nav>
 		<div class="alert alert-warning rounded-0 p-2 mb-0">
-			<p class="font-weight-bold text-center">This is a test alert!</p>
+			<p class="font-weight-bold text-center">Everything you see here is subject to change and is nowhere near completion!</p>
 		</div>
 		<div class="container">
 			{{ block('content') ?? 'Failure whilst loading page content, this is most likely because you tried accessing a page that doesn\'t contain a page content block.' }}
 		</div>
 		<div class="mt-auto pt-3 bg-light">
-			<div class="container">
-				<p class="text-center mb-1">{{ env.Name }}</p>
-				<p class="text-center text-muted">Copyright © {{ "now"|date("Y") ~ " " ~ env.Name ~ "." }} All rights reserved.</p>
+			<div class="text-center container">
+				<p class="mb-1 font-weight-bold">{{ env.Name }}</p>
+				<p class="mb-1">
+					<a href="{{ env.Domain.Scheme ~ '://help.' ~ env.Domain.Url ~ '/AboutUs' }}">About Us</a> <b class="text-muted">|</b>
+					<a href="{{ env.Domain.Scheme ~ '://help.' ~ env.Domain.Url ~ '/ToS' }}">Terms of Service</a> <b class="text-muted">|</b>
+					<a href="{{ env.Domain.Scheme ~ '://help.' ~ env.Domain.Url ~ '/Privacy' }}">Privacy Policy</a> <b class="text-muted">|</b>
+					<a href="{{ env.Domain.Scheme ~ '://help.' ~ env.Domain.Url ~ '/DMCA' }}">DMCA</a> <b class="text-muted">|</b>
+					<a href="{{ env.Domain.Scheme ~ '://www.' ~ env.Domain.Url ~ '/Discord' }}">Discord</a> <b class="text-muted">|</b>
+					<a href="{{ env.Domain.Scheme ~ '://help.' ~ env.Domain.Url ~ '/' }}">Support</a> <b class="text-muted">|</b>
+					<a href="{{ env.Domain.Scheme ~ '://blog.' ~ env.Domain.Url ~ '/' }}">Blog</a>
+				</p>
+				<p class="mb-2 font-weight-light d-none d-lg-block">
+					<a href="{{ env.Domain.Scheme ~ '://www.' ~ env.Domain.Url ~ '/Games' }}">All Games</a> <b class="text-muted">|</b>
+					<a href="{{ env.Domain.Scheme ~ '://www.' ~ env.Domain.Url ~ '/Games#Adventure' }}">Adventure</a> <b class="text-muted">|</b>
+					<a href="{{ env.Domain.Scheme ~ '://www.' ~ env.Domain.Url ~ '/Games#Building' }}">Building</a> <b class="text-muted">|</b>
+					<a href="{{ env.Domain.Scheme ~ '://www.' ~ env.Domain.Url ~ '/Games#Comedy' }}">Comedy</a> <b class="text-muted">|</b>
+					<a href="{{ env.Domain.Scheme ~ '://www.' ~ env.Domain.Url ~ '/Games#Horror' }}">Horror</a> <b class="text-muted">|</b>
+					<a href="{{ env.Domain.Scheme ~ '://www.' ~ env.Domain.Url ~ '/Games#Fighting' }}">Fighting</a> <b class="text-muted">|</b>
+					<a href="{{ env.Domain.Scheme ~ '://www.' ~ env.Domain.Url ~ '/Games#FPS' }}">FPS</a> <b class="text-muted">|</b>
+					<a href="{{ env.Domain.Scheme ~ '://www.' ~ env.Domain.Url ~ '/Games#Medieval' }}">Medieval</a> <b class="text-muted">|</b>
+					<a href="{{ env.Domain.Scheme ~ '://www.' ~ env.Domain.Url ~ '/Games#Military' }}">Military</a> <b class="text-muted">|</b>
+					<a href="{{ env.Domain.Scheme ~ '://www.' ~ env.Domain.Url ~ '/Games#Naval' }}">Naval</a> <b class="text-muted">|</b>
+					<a href="{{ env.Domain.Scheme ~ '://www.' ~ env.Domain.Url ~ '/Games#RPG' }}">RPG</a> <b class="text-muted">|</b>
+					<a href="{{ env.Domain.Scheme ~ '://www.' ~ env.Domain.Url ~ '/Games#SciFi' }}">Sci-Fi</a> <b class="text-muted">|</b>
+					<a href="{{ env.Domain.Scheme ~ '://www.' ~ env.Domain.Url ~ '/Games#Sports' }}">Sports</a> <b class="text-muted">|</b>
+					<a href="{{ env.Domain.Scheme ~ '://www.' ~ env.Domain.Url ~ '/Games#TownandCity' }}">Town and City</a> <b class="text-muted">|</b>
+					<a href="{{ env.Domain.Scheme ~ '://www.' ~ env.Domain.Url ~ '/Games#Western' }}">Western</a>
+				</p>
+				<hr class="mt-2 mb-2 w-25">
+				<p class="mb-0 text-muted font-weight-light">Copyright © {{ "now"|date("Y") ~ " " ~ env.Name ~ "." }} All rights reserved.</p>
+				<p class="text-muted font-weight-light">{{ env.Name }} is in no way shape or form associated with ROBLOX Corporation, nor does it claim to be. The usage of this website signifies your acceptance of the <a href="{{ env.Domain.Scheme ~ '://help.' ~ env.Domain.Url ~ '/ToS' }}">Terms of Service</a> and our <a href="{{ env.Domain.Scheme ~ '://help.' ~ env.Domain.Url ~ '/Privacy' }}">Privacy Policy</a>.</p>
 			</div>
 		</div>
 	</body>
