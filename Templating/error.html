@@ -21,7 +21,8 @@
 		},
 		418: {
 			'title': 'I\'m a teapot',
-			'description': 'The server seems to be short and stout.'
+			'description': 'The server seems to be short and stout.',
+			'image': env.Domain.Scheme ~ '://cdn.' ~ env.Domain.Url ~ '/IMG/ErrorPages/418imateapot.png'
 		},
 		500: {
 			'title': 'Internal Server Error',
@@ -32,13 +33,14 @@
 
 {% block content %}
 <div class="ml-auto mr-auto zeusError">
-<div class="card">
+<div class="card shadow">
 <div class="card-body">
 <div class="row">
-<img class="col-sm d-none d-lg-block" height="250" width="250" src="{{ env.Domain.Scheme ~ '://cdn.' ~ env.Domain.Url ~ '/IMG/ErrorPages/unknown.png' }}"/>
+{# set responseCode = 418 #}
+<img class="col-sm d-none d-lg-block" height="250" width="250" src="{% if errors[responseCode].image is defined %}{{ errors[responseCode].image|raw }}{% else %}{{ env.Domain.Scheme ~ '://cdn.' ~ env.Domain.Url ~ '/IMG/ErrorPages/unknown.png' }}{% endif %}"/>
 <div class="col-sm text-center d-flex flex-column p-2">
-<h4><b>{{ responseCode }} | </b>{% if errors[responseCode] is defined %}{{ errors[responseCode].title|raw }}{% else %}{{ 'Error' }}{% endif %}</h4>
-<h5>{% if errors[responseCode] is defined %}{{ errors[responseCode].description|raw }}{% else %}{{ 'An error occurred whilst attempting to fetch the page.' }}{% endif %}</h5>
+<h4><b>{{ responseCode }} | </b>{% if errors[responseCode].title is defined %}{{ errors[responseCode].title|raw }}{% else %}{{ 'Error' }}{% endif %}</h4>
+<h5>{% if errors[responseCode].description is defined %}{{ errors[responseCode].description|raw }}{% else %}{{ 'An error occurred whilst attempting to fetch the page.' }}{% endif %}</h5>
 <div class="float-center mt-auto">
 <a class="btn btn-secondary" id="backButton">Back</a>
 <a class="btn btn-primary" href="{{ env.Domain.Scheme ~ '://www.' ~ env.Domain.Url ~ '/Home' }}">Home</a>
