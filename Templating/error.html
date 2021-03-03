@@ -31,12 +31,6 @@
 %}
 
 {% block content %}
-<script>
-function goBack()
-{
-	window.history.back();
-}
-</script>
 <div class="ml-auto mr-auto zeusError">
 <div class="card">
 <div class="card-body">
@@ -45,8 +39,8 @@ function goBack()
 <div class="col-sm text-center d-flex flex-column p-2">
 <h4><b>{{ responseCode }} | </b>{% if errors[responseCode] is defined %}{{ errors[responseCode].title|raw }}{% else %}{{ 'Error' }}{% endif %}</h4>
 <h5>{% if errors[responseCode] is defined %}{{ errors[responseCode].description|raw }}{% else %}{{ 'An error occurred whilst attempting to fetch the page.' }}{% endif %}</h5>
-<div class="float-center mt-auto" id="zeusErrorPageButtons">
-<a class="btn btn-secondary" onclick="goBack()">Back</a>
+<div class="float-center mt-auto">
+<a class="btn btn-secondary" onclick="window.history.back()">Back</a>
 <a class="btn btn-primary" href="{{ env.Domain.Scheme ~ '://www.' ~ env.Domain.Url ~ '/Home' }}">Home</a>
 </div>
 </div>
