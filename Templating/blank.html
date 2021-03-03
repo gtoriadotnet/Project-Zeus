@@ -60,7 +60,7 @@
 		</div>
 		<div class="zeusSpacer zeusAlertActive">
 		</div>
-		<div class="container{% if responseCode is defined %}{{ ' mt-auto' }}{% endif %}" id="content">
+		<div class="container{% if responseCode is defined %}{{ ' mt-auto' }}{% endif %}" style="display:none;" id="content">
 			{{ block('content') ?? 'Failure whilst loading page content, this is most likely because you tried accessing a page that doesn\'t contain a page content block.' }}
 		</div>
 		<div class="mt-auto pt-3 bg-light" id="footer">
@@ -75,7 +75,7 @@
 					<a href="{{ env.Domain.Scheme ~ '://help.' ~ env.Domain.Url ~ '/' }}" target="_blank">Support</a> <b class="text-muted">|</b>
 					<a href="{{ env.Domain.Scheme ~ '://blog.' ~ env.Domain.Url ~ '/' }}" target="_blank">Blog</a>
 				</p>
-				<p class="mb-2 font-weight-light d-none d-lg-block">
+				<p class="mb-2 font-weight-light d-none d-lg-block" id="gameGenres">
 					<a href="{{ env.Domain.Scheme ~ '://www.' ~ env.Domain.Url ~ '/Games' }}">All Games</a> <b class="text-muted">|</b>
 					<a href="{{ env.Domain.Scheme ~ '://www.' ~ env.Domain.Url ~ '/Games#Adventure' }}">Adventure</a> <b class="text-muted">|</b>
 					<a href="{{ env.Domain.Scheme ~ '://www.' ~ env.Domain.Url ~ '/Games#Building' }}">Building</a> <b class="text-muted">|</b>
@@ -94,10 +94,20 @@
 				</p>
 				<hr class="mt-2 mb-2 w-25">
 				<p class="mb-0 text-muted font-weight-light">Copyright © {{ "now"|date("Y") ~ " " ~ env.Name ~ "." }} All rights reserved.</p>
-				<p class="text-muted font-weight-light">{{ env.Name }} is in no way shape or form associated with ROBLOX Corporation. The usage of this website signifies your acceptance of the <a href="{{ env.Domain.Scheme ~ '://help.' ~ env.Domain.Url ~ '/ToS' }}">Terms of Service</a> and our <a href="{{ env.Domain.Scheme ~ '://help.' ~ env.Domain.Url ~ '/Privacy' }}">Privacy Policy</a>.</p>
+				<p class="text-muted font-weight-light">{{ env.Name }} is in no way shape or form associated with ROBLOX Corporation. The usage of this website signifies your acceptance of the <a href="{{ env.Domain.Scheme ~ '://help.' ~ env.Domain.Url ~ '/ToS' }}" target="_blank">Terms of Service</a> and our <a href="{{ env.Domain.Scheme ~ '://help.' ~ env.Domain.Url ~ '/Privacy' }}" target="_blank">Privacy Policy</a>.</p>
 			</div>
 		</div>
 		<script>
+			function runContentClick()
+			{
+				$('#content a').map(function(){
+					$(this).click(function(){
+						executeRedirect($(this));
+						return false;
+					});
+				});
+			}
+			
 			function loadPage(response)
 			{
 				var zdoc = $('<div>').append(response); // retard, absolute baffoon, literal fucking troglodyte, why do you do what you do.
@@ -121,29 +131,44 @@
 						}
 						$('#content').html(content.html());
 					}
+					runContentClick();
 					$('#content').fadeIn(100);
 				}, 100);
 			}
 			
+			function executeRedirect(element)
+			{
+				$('#content').fadeOut(100);
+				var ref = element.attr('href');
+				window.history.pushState("object or string", "Title", ref);
+				$.get(ref, function(response){
+					loadPage(response);
+				})
+				.fail(function(response){
+					loadPage(response.responseText);
+				});
+			}
+			
 			$(document).ready(function(){
+				runContentClick();
+				$('#content').fadeIn(100);
 				$('.nav-link').click(function(){
 					if(!$(this).hasClass('dropdown-toggle'))
 					{
 						var element = $(this);
-						$('#content').fadeOut(100);
 						$('.nav-link').map(function(){
 							$(this).removeClass('active');
 						});
 						element.addClass('active');
-						window.history.pushState("object or string", "Title", $(this).attr('href'));
-						$.get(element.attr('href'), function(response){
-							loadPage(response);
-						})
-						.fail(function(response){
-							loadPage(response.responseText);
-						});
+						executeRedirect(element);
 						return false;
 					}
+				});
+				$('#gameGenres a').map(function(){
+					$(this).click(function(){
+						executeRedirect($(this));
+						return false;
+					});
 				});
 			});
 		</script>
