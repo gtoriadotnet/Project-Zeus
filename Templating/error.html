@@ -1,13 +1,31 @@
 {% extends 'blank.html' %}
 
+{% block supportLink %}<a href="mailto:support@{{ env.Domain.Url }}">support</a>{% endblock %}
+
 {% set errors = {
+		400: {
+			'title': 'Bad Request',
+			'description': 'We were unable to proccess your request. Please try again.'
+		},
+		401: {
+			'title': 'Unauthorized',
+			'description': 'You do not have access to view the requested resource.'
+		},
+		403: {
+			'title': 'Forbidden',
+			'description': 'You do not have access to view the requested resource.'
+		},
 		404: {
 			'title': 'Not Found',
 			'description': 'The page you were looking for cannot be found or no longer exists.'
 		},
+		418: {
+			'title': 'I\'m a teapot',
+			'description': 'The server seems to be short and stout.'
+		},
 		500: {
 			'title': 'Internal Server Error',
-			'description': 'We ran into an issue while trying to process your request, please try again. If this issue persists please contact support.'
+			'description': 'We ran into an issue while trying to process your request, please try again. If this issue persists please contact ' ~ block('supportLink') ~ '.'
 		}
 	}
 %}
@@ -19,14 +37,14 @@ function goBack()
 	window.history.back();
 }
 </script>
-<div class="w-50 ml-auto mr-auto">
+<div class="ml-auto mr-auto zeusError">
 <div class="card">
 <div class="card-body">
 <div class="row">
-<img class="col-sm" height="250" width="250" src="{{ env.Domain.Scheme ~ '://cdn.' ~ env.Domain.Url ~ '/IMG/ErrorPages/unknown.png' }}"/>
-<div class="col-sm text-center d-flex flex-column p-3">
-<h4><b>{{ responseCode }} | </b>{% if errors[responseCode] is defined %}{{ errors[responseCode].title }}{% else %}{{ 'Error' }}{% endif %}</h4>
-<h5>{% if errors[responseCode] is defined %}{{ errors[responseCode].description }}{% else %}{{ 'An error occurred whilst attempting to fetch the page.' }}{% endif %}</h5>
+<img class="col-sm d-none d-lg-block" height="250" width="250" src="{{ env.Domain.Scheme ~ '://cdn.' ~ env.Domain.Url ~ '/IMG/ErrorPages/unknown.png' }}"/>
+<div class="col-sm text-center d-flex flex-column p-2">
+<h4><b>{{ responseCode }} | </b>{% if errors[responseCode] is defined %}{{ errors[responseCode].title|raw }}{% else %}{{ 'Error' }}{% endif %}</h4>
+<h5>{% if errors[responseCode] is defined %}{{ errors[responseCode].description|raw }}{% else %}{{ 'An error occurred whilst attempting to fetch the page.' }}{% endif %}</h5>
 <div class="float-center mt-auto" id="zeusErrorPageButtons">
 <a class="btn btn-secondary" onclick="goBack()">Back</a>
 <a class="btn btn-primary" href="{{ env.Domain.Scheme ~ '://www.' ~ env.Domain.Url ~ '/Home' }}">Home</a>
