@@ -1,0 +1,39 @@
+{% extends 'blank.html' %}
+
+{% set errors = {
+		404: {
+			'title': 'Not Found',
+			'description': 'The page you were looking for cannot be found or no longer exists.'
+		},
+		500: {
+			'title': 'Internal Server Error',
+			'description': 'We ran into an issue while trying to process your request, please try again. If this issue persists please contact support.'
+		}
+	}
+%}
+
+{% block content %}
+<script>
+function goBack()
+{
+	window.history.back();
+}
+</script>
+<div class="w-50 ml-auto mr-auto">
+<div class="card">
+<div class="card-body">
+<div class="row">
+<img class="col-sm" height="250" width="250" src="{{ env.Domain.Scheme ~ '://cdn.' ~ env.Domain.Url ~ '/IMG/ErrorPages/unknown.png' }}"/>
+<div class="col-sm text-center d-flex flex-column p-3">
+<h4><b>{{ responseCode }} | </b>{% if errors[responseCode] is defined %}{{ errors[responseCode].title }}{% else %}{{ 'Error' }}{% endif %}</h4>
+<h5>{% if errors[responseCode] is defined %}{{ errors[responseCode].description }}{% else %}{{ 'An error occurred whilst attempting to fetch the page.' }}{% endif %}</h5>
+<div class="float-center mt-auto" id="zeusErrorPageButtons">
+<a class="btn btn-secondary" onclick="goBack()">Back</a>
+<a class="btn btn-primary" href="{{ env.Domain.Scheme ~ '://www.' ~ env.Domain.Url ~ '/Home' }}">Home</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

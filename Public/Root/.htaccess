@@ -1,1 +1,4 @@
-RewriteEngine on
+ErrorDocument 404 /Pages/error.php
+ErrorDocument 403 /Pages/error.php
+ErrorDocument 400 /Pages/error.php
+ErrorDocument 500 /Pages/error.php
