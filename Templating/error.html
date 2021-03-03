@@ -40,7 +40,7 @@
 <h4><b>{{ responseCode }} | </b>{% if errors[responseCode] is defined %}{{ errors[responseCode].title|raw }}{% else %}{{ 'Error' }}{% endif %}</h4>
 <h5>{% if errors[responseCode] is defined %}{{ errors[responseCode].description|raw }}{% else %}{{ 'An error occurred whilst attempting to fetch the page.' }}{% endif %}</h5>
 <div class="float-center mt-auto">
-<a class="btn btn-secondary" onclick="window.history.back()">Back</a>
+<a class="btn btn-secondary" id="backButton">Back</a>
 <a class="btn btn-primary" href="{{ env.Domain.Scheme ~ '://www.' ~ env.Domain.Url ~ '/Home' }}">Home</a>
 </div>
 </div>
@@ -48,4 +48,10 @@
 </div>
 </div>
 </div>
+<script>
+if(typeof prevPage != 'undefined')
+{
+	$('#backButton').attr('href', prevPage);
+}
+</script>
 {% endblock %}

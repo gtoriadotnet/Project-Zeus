@@ -98,6 +98,8 @@
 			</div>
 		</div>
 		<script>
+			var prevPage = null;
+			
 			function runContentClick()
 			{
 				$('#content a').map(function(){
@@ -108,7 +110,20 @@
 				});
 			}
 			
-			function loadPage(response)
+			function executeRedirect(element)
+			{
+				$('#content').fadeOut(100);
+				var ref = element.attr('href');
+				window.history.pushState({}, "Title", ref);
+				$.get(ref, function(response){
+					loadPage(response, ref);
+				})
+				.fail(function(response){
+					loadPage(response.responseText, ref);
+				});
+			}
+			
+			function loadPage(response, ref)
 			{
 				var zdoc = $('<div>').append(response); // retard, absolute baffoon, literal fucking troglodyte, why do you do what you do.
 				var content = zdoc.find('#content');
@@ -132,21 +147,9 @@
 						$('#content').html(content.html());
 					}
 					runContentClick();
+					prevPage = ref;
 					$('#content').fadeIn(100);
 				}, 100);
-			}
-			
-			function executeRedirect(element)
-			{
-				$('#content').fadeOut(100);
-				var ref = element.attr('href');
-				window.history.pushState("object or string", "Title", ref);
-				$.get(ref, function(response){
-					loadPage(response);
-				})
-				.fail(function(response){
-					loadPage(response.responseText);
-				});
 			}
 			
 			$(document).ready(function(){
