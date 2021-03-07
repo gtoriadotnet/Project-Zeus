@@ -26,13 +26,50 @@ require($_SERVER['DOCUMENT_ROOT'] . '/../../Backend/API.php');
 
 API::Respond(['Error'=>'The requested resource is not implemented yet.'], '501 Not Implemented');
 
-Authentication::ValidateRCCAccessKey();
+Authentication::ValidateRCCAccessKey(); // add support for session cookies l8r, but also add a check to $_GET['placeId'] for if the user is allowed to access the asset
 
 if(isset($_GET['placeId']) && isset($_GET['type']) && isset($_GET['scope']) && isset($_GET['key']) && isset($_GET['pageSize']) && isset($_GET['ascending']))
 {
 	$db = new Zeus\Database();
 	$db = $db->dbConnection;
-	API::Respond(['data'=>['Entries'=>[['Target']=>'target_here', 'Value'=>0],[['Target']=>'target_here', 'Value'=>0]], 'ExclusiveStartKey'=>'ThisKeyGoesToPageTwo'], '200 OK');
+	
+	$offset = '0';
+	
+	$dataToReturn = [
+		'data'=>[
+			'Entries'=>[]
+		],
+		'ExclusiveStartKey'=>'ThisKeyGoesToPageTwo'
+	];
+	
+	if(isset($_GET['exclusiveStartKey']))
+	{
+		$db->prepare('SELECT `offset` FROM `ordereddskeys` WHERE `key`=:key;');
+		$db->bindParam(':key', $_GET['exclusiveStartKey']);
+		$db->execute();
+		$result = $db->fetch(PDO::FETCH_ASSOC);
+		
+		if(!empty($result))
+		{
+			$offset = $result['offset'];
+		}
+	}
+	
+	$db->prepare('SELECT `value`, `target` FROM `ordereddatastores` WHERE `key`=:key AND `scope`=:scope AND `placeId`=:placeId OFFSET :offset ROWS FETCH NEXT :pageSize ROWS ONLY ORDER BY `value` ' . (strtolower($_GET['ascending']) == 'true' ? 'ASC;' : 'DESC;'));
+	$db->bindParam(':key', $_GET['key']);
+	$db->bindParam(':scope', $_GET['scope']);
+	$db->bindParam(':placeId', (int)$_GET['placeId']);
+	$db->bindParam(':offset', (int)$offset);
+	$db->bindParam(':pageSize', (int)$_GET['pageSize']);
+	$db->execute();
+	$result = $db->fetchAll(PDO::FETCH_ASSOC);
+	
+	foreach($result as $dbresult)
+	{
+		array_push($dataToReturn['data']['Entries'], ['Target'=>$dbresult['target'], 'Value'=>$dbresult['value']]);
+	}
+	
+	API::Respond($dataToReturn, '200 OK');
 }
 else
 {
