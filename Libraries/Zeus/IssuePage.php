@@ -1,6 +1,6 @@
 <?php
 
-namespace Zeus;
+namespace Zeus
 {
 	class IssuePage
 	{

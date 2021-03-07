@@ -1,0 +1,6 @@
+RewriteEngine on
+
+RewriteRule ^persistence/getSortedValues/?$ /internal/getsortedvalues.php
+RewriteRule ^persistence/getV2/?$ /internal/getv2.php
+RewriteRule ^persistence/set/?$ /internal/set.php
+RewriteRule ^persistence/increment/?$ /internal/increment.php
