@@ -55,7 +55,8 @@ if(isset($_GET['placeId']) && isset($_GET['type']) && isset($_GET['scope']) && i
 		}
 	}
 	
-	$db->prepare('SELECT `value`, `target` FROM `ordereddatastores` WHERE `key`=:key AND `scope`=:scope AND `placeId`=:placeId OFFSET :offset ROWS FETCH NEXT :pageSize ROWS ONLY ORDER BY `value` ' . (strtolower($_GET['ascending']) == 'true' ? 'ASC;' : 'DESC;'));
+	$db->prepare('SELECT `value`, `target` FROM `datastores` WHERE `type`=:type AND `key`=:key AND `scope`=:scope AND `placeId`=:placeId OFFSET :offset ROWS FETCH NEXT :pageSize ROWS ONLY ORDER BY `value` ' . (strtolower($_GET['ascending']) == 'true' ? 'ASC;' : 'DESC;'));
+	$db->bindParam(':type', $_GET['type']);
 	$db->bindParam(':key', $_GET['key']);
 	$db->bindParam(':scope', $_GET['scope']);
 	$db->bindParam(':placeId', (int)$_GET['placeId']);
