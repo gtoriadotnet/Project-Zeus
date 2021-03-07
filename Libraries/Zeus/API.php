@@ -4,11 +4,11 @@ namespace Zeus
 {
 	class API
 	{
-		public static function Respond(responseArray, responseStatus)
+		public static function Respond($responseArray, $responseStatus)
 		{
-			header('HTTP/1.1 ' . responseStatus);
+			header('HTTP/1.1 ' . $responseStatus);
 			header('Content-Type: Application/JSON');
-			exit(json_encode(responseArray, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK))
+			exit(json_encode($responseArray, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK));
 		}
 		
 		public static function GetSetting($setting)
