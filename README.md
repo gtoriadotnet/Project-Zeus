@@ -1,7 +1,6 @@
 # Project Zeus
 
-![Project Zeus](/Art/clienticon.png)
+**So what is "Project Zeus"?**
+Project Zeus is a 2016 Roblox revival without an owner_(aka me, XlXi, **but you don't know that!**)_.
 
-Project Zeus is a 2016 Roblox Revival without an owner.
-
-2/15/2021
+###### *2/15/2021*
