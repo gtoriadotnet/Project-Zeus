@@ -138,6 +138,10 @@
 				var zdoc = $('<div>').append(response); // retard, absolute baffoon, literal fucking troglodyte, why do you do what you do.
 				var content = zdoc.find('#content');
 				var title = zdoc.find('title').html();
+				if(~title.indexOf('Site Offline'))
+				{
+					window.location.reload();
+				}
 				$(document).prop('title', title);
 				setTimeout(function(){
 					if(typeof content == 'undefined')

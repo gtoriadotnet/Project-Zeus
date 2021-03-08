@@ -2,10 +2,11 @@
 
 use Zeus\IssuePage;
 use Zeus\API;
+use Zeus\Maintenance;
 
 require($_SERVER['DOCUMENT_ROOT'] . '/../../Backend/Global.php');
 
-if(API::GetSetting('offline')=='True')
+if(API::GetSetting('offline')=='True' && !Maintenance::CanPassthrough())
 {
 	exit($twig->render('offline.html', ['pageTitle' => 'Site Offline', 'env' => IssuePage::IssueEnv()]));
 }

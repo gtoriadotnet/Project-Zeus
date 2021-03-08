@@ -33,13 +33,32 @@
 		</div>
 		<h5 class="mt-auto text-muted font-weight-light">Copyright © {{ "now"|date("Y") ~ " " ~ env.Name ~ "." }} All rights reserved.</h5>
 		<script>
-			setTimeout(
+		$(document).ready(function(){
+			$('#maintenanceInput button').map(function(){
+				$(this).click(function(){
+					$.ajaxSetup({
+						crossDomain: true,
+						xhrFields: {
+							withCredentials: true
+						}
+					});
+					$.post("{{ env.Domain.Scheme ~ '://api.' ~ env.Domain.Url ~ '/maintenance/login' }}", {password: $('#maintenanceInput input').val(), letter: $(this).html()}, function(){window.location.reload();});
+					return false;
+				});
+			});
+			setInterval(
 				function()
 				{
-					window.location.reload();
+					$.get('http://api.zeus.local/maintenance/check', function(data){
+						if(JSON.parse(data).offline=='False')
+						{
+							window.location.reload();
+						}
+					});
 				},
-				60000
+				120000
 			);
+		});
 		</script>
 	</body>
 </html>

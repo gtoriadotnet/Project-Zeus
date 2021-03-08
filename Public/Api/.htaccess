@@ -1,3 +1,5 @@
+DirectorySlash Off
+
 RewriteEngine on
 
 RewriteRule ^maintenance/check/?$ /internal/ismaintenancemodeenabled.php [L,NC] # last, non case sensitive

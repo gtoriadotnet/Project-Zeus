@@ -6,13 +6,16 @@ spl_autoload_register(function($cName)
 });
 
 use Zeus\API;
+use Zeus\Maintenance;
 
-if(API::GetSetting('offline')=='True' && $_SERVER['SCRIPT_NAME'] != '/internal/ismaintenancemodeenabled.php' && $_SERVER['SCRIPT_NAME'] != '/internal/maintenancepassthrough.php')
+if((API::GetSetting('offline')=='True' && $_SERVER['SCRIPT_NAME'] != '/internal/ismaintenancemodeenabled.php' && $_SERVER['SCRIPT_NAME'] != '/internal/maintenancepassthrough.php') && !Maintenance::CanPassthrough())
 {
 	API::Respond(['Error'=>'Service Undergoing Maintenance'], '503 Service Unavailable');
 }
 
-if(strpos($_SERVER['REDIRECT_URL'], '.php'))
+$requri = $_SERVER['REQUEST_URI'];
+$pos = strpos($requri, '?');
+if(strpos(substr($requri, 0, ($pos ? $pos : null)), '.php'))
 {
 	API::Respond(['Error'=>'The requested resource was not found.'], '404 Not Found');
 }
