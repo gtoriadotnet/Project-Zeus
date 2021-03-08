@@ -17,16 +17,12 @@
 		</style>
 	</head>
 	<body class="text-white container-sm text-center h-100 d-flex flex-column">
-		<h1 class="mt-5 mb-5">We're currently offline!</h1>
-		<div class="d-flex justify-content-center">
-			<img class="mb-5" src="{{ env.Domain.Scheme ~ '://cdn.' ~ env.Domain.Url ~ '/IMG/ErrorPages/maintenance.png' }}" width="400" height="400" alt="offline image">
-				
-			</img>
-		</div>
 		<div class="mt-auto mb-auto">
-			<h1 class="mb-5">We'll be back soon!</h1>
-			<div class="mb-5 row row-cols-2 d-none d-md-flex justify-content-center">
-				<div class="form-group d-flex">
+			<h1 class="mb-2"><b>We're currently offline for maintenance and upgrades.</b></h1>
+			<h2 class="mb-5">Check back soon!</h2>
+			<img class="mb-5" src="{{ env.Domain.Scheme ~ '://cdn.' ~ env.Domain.Url ~ '/IMG/ErrorPages/maintenance.png' }}" width="400" height="400" alt="offline image"></img>
+			<div class="row row-cols-2 d-none d-md-flex justify-content-center">
+				<div class="form-group d-flex" id="maintenanceInput">
 					<input type="password" class="form-control mr-2">
 					<button class="btn btn-dark mr-1">Z</button>
 					<button class="btn btn-dark mr-1">E</button>
@@ -35,5 +31,15 @@
 				</div>
 			</div>
 		</div>
+		<h5 class="mt-auto text-muted font-weight-light">Copyright © {{ "now"|date("Y") ~ " " ~ env.Name ~ "." }} All rights reserved.</h5>
+		<script>
+			setTimeout(
+				function()
+				{
+					window.location.reload();
+				},
+				60000
+			);
+		</script>
 	</body>
 </html>

@@ -13,12 +13,15 @@ $twig = new Twig\Environment($loader, [
     //'cache' => $_SERVER['DOCUMENT_ROOT'] . '/../../TwigCache',
 ]);
 
-if(API::GetSetting('offline')=='True')
+if(API::GetSetting('offline')=='True' && $_SERVER['SCRIPT_NAME'] != '/pages/maintenancerouter.php')
 {
-	exit($twig->render('offline.html', ['pageTitle' => 'Maintenance', 'env' => IssuePage::IssueEnv()]));
+	$domain = API::GetSetting('domain');
+	header('location: ' . $domain['scheme'] . '://www.' . $domain['host'] . '/login/maintenance?ReturnUrl=' . urlencode($domain['scheme'] . '://www.' . $domain['host'] . $_SERVER['REQUEST_URI']));
+	exit;
+	//exit($twig->render('offline.html', ['pageTitle' => 'Site Offline', 'env' => IssuePage::IssueEnv()]));
 }
 
-if(strpos($_SERVER['REQUEST_URI'], '.php'))
+if(strpos($_SERVER['REDIRECT_URL'], '.php'))
 {
 	http_response_code(404);
 	exit($twig->render('error.html', ['pageTitle' => 'Error', 'env' => IssuePage::IssueEnv(), 'responseCode' => 404]));
