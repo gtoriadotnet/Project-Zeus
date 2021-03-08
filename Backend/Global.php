@@ -2,7 +2,7 @@
 
 spl_autoload_register(function($cName)
 {
-	require(__DIR__ . "/../Libraries/" . $cName . ".php");
+	require(__DIR__ . '/../Libraries/' . $cName . '.php');
 });
 
 use Zeus\IssuePage;
