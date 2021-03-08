@@ -39,12 +39,12 @@ if(isset($_GET['placeId']) && isset($_GET['type']) && isset($_GET['scope']) && i
 		'data'=>[
 			'Entries'=>[]
 		],
-		'ExclusiveStartKey'=>'ThisKeyGoesToPageTwo'
+		'ExclusiveStartKey'=>null
 	];
 	
 	if(isset($_GET['exclusiveStartKey']))
 	{
-		$db->prepare('SELECT `offset` FROM `ordereddskeys` WHERE `key`=:key;');
+		$db->prepare('SELECT `id`, `offset` FROM `ordereddskeys` WHERE `key`=:key;');
 		$db->bindParam(':key', $_GET['exclusiveStartKey']);
 		$db->execute();
 		$result = $db->fetch(PDO::FETCH_ASSOC);
@@ -52,6 +52,9 @@ if(isset($_GET['placeId']) && isset($_GET['type']) && isset($_GET['scope']) && i
 		if(!empty($result))
 		{
 			$offset = $result['offset'];
+			$db->prepare('DEELTE FROM `ordereddskeys` WHERE `id`=:id');
+			$db->bindParam(':id', $result['id']);
+			$db->execute();
 		}
 	}
 	
