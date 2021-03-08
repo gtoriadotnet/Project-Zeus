@@ -18,7 +18,6 @@ if(API::GetSetting('offline')=='True' && $_SERVER['SCRIPT_NAME'] != '/pages/main
 	$domain = API::GetSetting('domain');
 	header('location: ' . $domain['scheme'] . '://www.' . $domain['host'] . '/login/maintenance?ReturnUrl=' . urlencode($domain['scheme'] . '://www.' . $domain['host'] . $_SERVER['REQUEST_URI']));
 	exit;
-	//exit($twig->render('offline.html', ['pageTitle' => 'Site Offline', 'env' => IssuePage::IssueEnv()]));
 }
 
 if(strpos($_SERVER['REDIRECT_URL'], '.php'))
