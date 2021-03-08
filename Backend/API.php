@@ -9,7 +9,7 @@ use Zeus\API;
 
 if(API::GetSetting('offline')=='True')
 {
-	API::Respond(['Error']=>'Service Undergoing Maintenance'], '503 Service Unavailable')
+	API::Respond(['Error'=>'Service Undergoing Maintenance'], '503 Service Unavailable');
 }
 
 if(strpos($_SERVER['REQUEST_URI'], '.php'))
