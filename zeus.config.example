@@ -1,0 +1,22 @@
+{
+	"name": "Project Zeus",
+	"offline": "False",
+	"domain": {
+		"host": "example.com",
+		"scheme": "https"
+	},
+	"database": {
+		"host": "127.0.0.1",
+		"port": 0,
+		"database": "",
+		"username": "",
+		"password": ""
+	},
+	"keys": {
+		"rccaccess": "",
+		"rccsettings": "",
+		"clientsettings": "",
+		"versioncompatibility": "",
+		"counters": ""
+	}
+}
