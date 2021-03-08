@@ -1,3 +1,13 @@
+{% set alertTypes = {
+	0: 'primary',
+	1: 'secondary',
+	2: 'success',
+	3: 'danger',
+	4: 'warning',
+	5: 'info',
+	6: 'light',
+	7: 'dark'
+} %}
 <!DOCTYPE html>
 <html class="h-100">
 	<head>
@@ -64,11 +74,13 @@
 					</div>
 				</div>
 			</div>
-			<div class="alert alert-warning rounded-0 p-2 mb-0">
-				<p class="font-weight-bold text-center">Everything you see here is subject to change and is nowhere near completion!</p>
+			{% if env.Alert.active == 'True' %}
+			<div class="alert alert-{{ alertTypes[env.Alert.type] }} warning rounded-0 p-2 mb-0">
+				<p class="font-weight-bold text-center">{{ env.Alert.message }}</p>
 			</div>
+			{% endif %}
 		</div>
-		<div class="zeusSpacer zeusAlertActive">
+		<div class="zeusSpacer{% if env.Alert.active == 'True' %}{{ ' zeusAlertActive' }}{% endif %}">
 		</div>
 		<div class="container{% if responseCode is defined %}{{ ' mt-auto' }}{% endif %}" style="display:none;" id="content">
 			{{ block('content') ?? 'Failure whilst loading page content, this is most likely because you tried accessing a page that doesn\'t contain a page content block.' }}
