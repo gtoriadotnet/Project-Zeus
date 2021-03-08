@@ -5,4 +5,4 @@ ErrorDocument 500 /Pages/error.php
 DirectorySlash off
 
 RewriteEngine on
-RewriteRule ^login/maintenance/?$ /pages/maintenancerouter.php [L,QSA,NC]
+RewriteRule ^login/maintenance/?$ /pages/maintenancerouter.php [L,QSA,NC] # last, add query, non case sensitive
