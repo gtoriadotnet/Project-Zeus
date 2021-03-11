@@ -1,13 +1,14 @@
 {
 	"name": "Project Zeus",
 	"offline": "False",
+	"debug": "False",
 	"domain": {
 		"host": "example.com",
 		"scheme": "https"
 	},
 	"database": {
 		"host": "127.0.0.1",
-		"port": 0,
+		"port": 3306,
 		"database": "",
 		"username": "",
 		"password": ""
@@ -19,5 +20,10 @@
 		"versioncompatibility": "",
 		"counters": "",
 		"maintenance": ""
+	},
+	"alert": {
+		"active": "False",
+		"message": "",
+		"type": 0
 	}
 }
