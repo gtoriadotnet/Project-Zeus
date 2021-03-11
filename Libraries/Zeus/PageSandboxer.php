@@ -4,14 +4,14 @@ namespace Zeus
 {
 	class PageSandboxer
 	{
-		public function handleException($severity, $message, $filename, $lineno)
+		public function HandleException($severity, $message, $filename, $lineno)
 		{
 			throw new \ErrorException($message, 0, $severity, $filename, $lineno);
 		}
 		
 		public function CreateExceptionHandler()
 		{
-			set_error_handler(array($this, 'handleException'));
+			set_error_handler(array($this, 'HandleException'));
 		}
 		
 		static public function GetExceptionTraceAsString($exception) {
