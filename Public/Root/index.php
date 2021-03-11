@@ -2,8 +2,8 @@
 
 use Zeus\IssuePage;
 
-require($_SERVER['DOCUMENT_ROOT'] . '/../../Backend/Global.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/../../Backend/Global.php');
 
-echo $twig->render('index.html', ['pageTitle' => 'Home', 'env' => IssuePage::IssueEnv()]);
+exit($twig->render('index.html', ['pageTitle' => 'Home', 'env' => IssuePage::IssueEnv()]));
 
 ?>

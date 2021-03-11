@@ -2,7 +2,7 @@
 
 use Zeus\API;
 
-require($_SERVER['DOCUMENT_ROOT'] . '/../../Backend/API.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/../../Backend/API.php');
 
 header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Allow-Origin: http://www.' . API::GetSetting('domain')['host']);
@@ -29,8 +29,10 @@ if($_POST['password']==$password && $_POST['letter']=='U')
 	header('Set-Cookie: .ZEUSMAINTENANCEPASSTHROUGH=_|DO-NOT-SHARE-THIS-COOKIE--THIS-COOKIE-ALLOWS-ACCESS-TO-THE-SITE-WHILE-UNDER-MAINTENANCE-|' . $cookie . '; Domain=zeus.local; SameSite=Strict; Path=/; Expires=' . str_replace('+0000', 'GMT', gmdate('r', time()+(60*60*24))));
 	
 	API::Respond(['Success'=>'True', 'Error'=>null], '200 OK');
+	exit;
 }
 else
 {
 	API::Respond(['Success'=>'False', 'Error'=>'Incorrect password.'], '403 Forbidden');
+	exit;
 }

@@ -4,7 +4,7 @@ use Zeus\IssuePage;
 use Zeus\API;
 use Zeus\Maintenance;
 
-require($_SERVER['DOCUMENT_ROOT'] . '/../../Backend/Global.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/../../Backend/Global.php');
 
 if(API::GetSetting('offline')=='True' && !Maintenance::CanPassthrough())
 {

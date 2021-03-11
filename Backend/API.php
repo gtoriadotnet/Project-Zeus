@@ -2,7 +2,7 @@
 
 spl_autoload_register(function($cName)
 {
-	require(__DIR__ . '/../Libraries/' . $cName . '.php');
+	require_once(__DIR__ . '/../Libraries/' . $cName . '.php');
 });
 
 use Zeus\API;
@@ -17,5 +17,6 @@ $requri = $_SERVER['REQUEST_URI'];
 $pos = strpos($requri, '?');
 if(strpos(substr($requri, 0, ($pos ? $pos : null)), '.php'))
 {
-	API::Respond(['Error'=>'The requested resource was not found.'], '404 Not Found');
+	http_response_code(404);
+	require_once(__DIR__ . '/../Clientapis/ApiErrorShared.php');
 }

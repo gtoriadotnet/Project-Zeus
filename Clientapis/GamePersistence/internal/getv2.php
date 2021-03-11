@@ -3,7 +3,7 @@
 use Zeus\API;
 use Zeus\Authentication;
 
-require($_SERVER['DOCUMENT_ROOT'] . '/../../Backend/API.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/../../Backend/API.php');
 
 // Expected format is:
 //	{ "data" : 
