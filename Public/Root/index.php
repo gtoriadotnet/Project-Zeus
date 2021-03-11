@@ -11,11 +11,12 @@ $sandbox->CreateExceptionHandler();
 $sandbox->RunSandbox(
 	function()
 	{
-		$egg = $bruh;
+		$pageIssuer = new IssuePage;
+		$twig = $pageIssuer->FetchTwig();
+		exit($twig->render('index.html', ['pageTitle' => 'Home', 'env' => IssuePage::IssueEnv()]));
 	},
-	false,
-	$twig
+	false
 );
-exit($twig->render('index.html', ['pageTitle' => 'Home', 'env' => IssuePage::IssueEnv()]));
+exit;
 
 ?>

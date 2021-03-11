@@ -5,14 +5,8 @@ spl_autoload_register(function($cName)
 	require_once(__DIR__ . '/../Libraries/' . $cName . '.php');
 });
 
-use Zeus\IssuePage;
 use Zeus\API;
 use Zeus\Maintenance;
-
-$loader = new Twig\Loader\FilesystemLoader($_SERVER['DOCUMENT_ROOT'] . '/../../Templating');
-$twig = new Twig\Environment($loader, [
-    //'cache' => $_SERVER['DOCUMENT_ROOT'] . '/../../TwigCache',
-]);
 
 if((API::GetSetting('offline')=='True' && $_SERVER['SCRIPT_NAME'] != '/pages/maintenancerouter.php') && !Maintenance::CanPassthrough())
 {

@@ -14,7 +14,7 @@ namespace Zeus
 			set_error_handler(array($this, 'handleException'));
 		}
 		
-		public function RunSandbox($sandboxedFunction, $isApi, $twig = null)
+		public function RunSandbox($sandboxedFunction, $isApi)
 		{
 			try
 			{
@@ -42,6 +42,8 @@ namespace Zeus
 				{
 					if($debugEnabled)
 					{
+						$pageIssuer = new IssuePage;
+						$twig = $pageIssuer->FetchTwig();
 						exit($twig->render('error.html', ['pageTitle' => 'Error', 'env' => IssuePage::IssueEnv(), 'responseCode' => 500, 'trace' => $e->getTraceAsString()]));
 					}
 					else
@@ -51,7 +53,6 @@ namespace Zeus
 						exit;
 					}
 				}
-				exit($e->getTraceAsString());
 			}
 		}
 	}
