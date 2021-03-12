@@ -11,7 +11,7 @@ namespace Zeus
 				$db = new Database();
 				$db = $db->dbConnection;
 				
-				$theCookie = str_replace('_|DO-NOT-SHARE-THIS-COOKIE--THIS-COOKIE-ALLOWS-ACCESS-TO-THE-SITE-WHILE-UNDER-MAINTENANCE-|', '', $_COOKIE['_ZEUSMAINTENANCEPASSTHROUGH']);
+				$theCookie = str_replace(API::$MaintenanceHeader, '', $_COOKIE['_ZEUSMAINTENANCEPASSTHROUGH']);
 				
 				$query = $db->prepare('SELECT `date`, `ip` FROM `maintenancepassthroughkeys` WHERE `cookie`=:cookie');
 				$query->bindParam(':cookie', $theCookie);

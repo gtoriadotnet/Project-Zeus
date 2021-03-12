@@ -34,7 +34,7 @@ $sandbox->RunSandbox(
 			
 			$domain = API::GetSetting('domain');
 			
-			header('Set-Cookie: .ZEUSMAINTENANCEPASSTHROUGH=_|DO-NOT-SHARE-THIS-COOKIE--THIS-COOKIE-ALLOWS-ACCESS-TO-THE-SITE-WHILE-UNDER-MAINTENANCE-|' . $cookie . '; Domain=zeus.local; SameSite=Strict; Path=/; Expires=' . str_replace('+0000', 'GMT', gmdate('r', time()+(60*60*24))));
+			header('Set-Cookie: .ZEUSMAINTENANCEPASSTHROUGH=' . API::$MaintenanceHeader . $cookie . '; Domain=zeus.local; SameSite=Strict; Path=/; Expires=' . str_replace('+0000', 'GMT', gmdate('r', time()+(60*60*24))));
 			
 			API::Respond(['Success'=>'True', 'Error'=>null], '200 OK');
 			exit;

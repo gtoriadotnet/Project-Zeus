@@ -4,6 +4,8 @@ namespace Zeus
 {
 	class API
 	{
+		public static $MaintenanceHeader = '_|DO-NOT-SHARE-THIS-COOKIE--THIS-COOKIE-ALLOWS-ACCESS-TO-THE-SITE-WHILE-UNDER-MAINTENANCE-|';
+		
 		public static function Respond($responseArray, $responseStatus)
 		{
 			header('HTTP/1.1 ' . $responseStatus);
