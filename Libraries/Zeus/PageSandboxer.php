@@ -73,7 +73,7 @@ namespace Zeus
 			{
 				$sandboxedFunction();
 			}
-			catch(\ErrorException $e)
+			catch(\Throwable $e)
 			{
 				$debugEnabled = API::GetSetting('debug') == 'True';
 				
