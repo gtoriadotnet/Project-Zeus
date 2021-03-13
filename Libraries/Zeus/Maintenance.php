@@ -29,6 +29,7 @@ namespace Zeus
 						$query = $db->prepare('DELETE FROM `maintenancepassthroughkeys` WHERE `cookie`=:cookie');
 						$query->bindParam(':cookie', $theCookie);
 						$query->execute();
+						exit(API::GetIPAddress());
 						return false;
 					}
 				}

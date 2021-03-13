@@ -11,9 +11,10 @@ $sandbox->CreateExceptionHandler();
 $sandbox->RunSandbox(
 	function()
 	{
+		$domain = API::GetSetting('domain');
 		header('Access-Control-Allow-Credentials: true');
-		header('Access-Control-Allow-Origin: http://www.' . API::GetSetting('domain')['host']);
-		header('Access-Control-Allow-Headers: http://www.' . API::GetSetting('domain')['host']);
+		header('Access-Control-Allow-Origin: ' . $domain['scheme'] . '://www.' . $domain['host']);
+		header('Access-Control-Allow-Headers: ' . $domain['scheme'] . '://www.' . $domain['host']);
 
 		API::CheckMethod(['POST']);
 
@@ -34,7 +35,7 @@ $sandbox->RunSandbox(
 			
 			$domain = API::GetSetting('domain');
 			
-			header('Set-Cookie: .ZEUSMAINTENANCEPASSTHROUGH=' . API::$MaintenanceHeader . $cookie . '; Domain=zeus.local; SameSite=Strict; Path=/; Expires=' . str_replace('+0000', 'GMT', gmdate('r', time()+(60*60*24))));
+			header('Set-Cookie: .ZEUSMAINTENANCEPASSTHROUGH=' . API::$MaintenanceHeader . $cookie . '; Domain=' . $domain['host'] . '; SameSite=Strict; Path=/; Expires=' . str_replace('+0000', 'GMT', gmdate('r', time()+(60*60*24))));
 			
 			API::Respond(['Success'=>'True', 'Error'=>null], '200 OK');
 			exit;
