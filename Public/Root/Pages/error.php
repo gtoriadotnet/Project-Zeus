@@ -18,4 +18,3 @@ $sandbox->RunSandbox(
 	false
 );
 exit;
-?>

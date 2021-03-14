@@ -125,10 +125,13 @@
 			function runContentClick()
 			{
 				$('#content a').map(function(){
-					$(this).click(function(){
-						executeRedirect($(this));
-						return false;
-					});
+					if($(this).attr('target') != '_blank')
+					{
+						$(this).click(function(){
+							executeRedirect($(this));
+							return false;
+						});
+					}
 				});
 			}
 			

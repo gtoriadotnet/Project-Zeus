@@ -35,4 +35,3 @@ $sandbox->RunSandbox(
 	false
 );
 exit;
-?>

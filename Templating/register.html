@@ -1,0 +1,18 @@
+{% extends 'blank.html' %}
+
+{% block content %}
+<div class="mb-3"></div>
+{% if allowed == 1 %}
+<h1 class="mb-3">Sign Up</h1>
+<div class="card">
+	<div class="card-body">
+		<h5>todo</h5>
+	</div>
+	<div class="card-footer text-muted">
+		All passwords are hashed with <a href="https://en.wikipedia.org/wiki/Bcrypt" target="_blank">bcrypt</a> and cannot be viewed by our administrators.
+	</div>
+</div>
+{% else %}
+<center><h1>Registration is currently disabled, please try again later.</h1></center>
+{% endif %}
+{% endblock %}

@@ -6,3 +6,4 @@ DirectorySlash off
 
 RewriteEngine on
 RewriteRule ^login/maintenance/?$ /pages/maintenancerouter.php [L,QSA,NC] # last, add query, non case sensitive
+RewriteRule ^register/?$ /pages/register.php [L,QSA,NC] # last, add query, non case sensitive
