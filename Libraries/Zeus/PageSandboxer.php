@@ -97,7 +97,7 @@ namespace Zeus
 					{
 						$pageIssuer = new IssuePage;
 						$twig = $pageIssuer->FetchTwig();
-						exit($twig->render('error.html', ['pageTitle' => 'Error', 'env' => IssuePage::IssueEnv(), 'responseCode' => 500, 'trace' => PageSandboxer::GetExceptionTraceAsString($e)]));
+						exit($twig->render('error.html', ['pageTitle' => 'Error', 'env' => IssuePage::IssueEnv(), 'responseCode' => 500, 'detail' => $e->getMessage(), 'trace' => PageSandboxer::GetExceptionTraceAsString($e)]));
 					}
 					else
 					{
