@@ -6,7 +6,10 @@ spl_autoload_register(function($cName)
 });
 
 use Zeus\API;
+use Zeus\Authentication;
 use Zeus\Maintenance;
+
+Authentication::CheckIPBanStatus();
 
 if((API::GetSetting('offline')=='True' && $_SERVER['SCRIPT_NAME'] != '/pages/maintenancerouter.php') && !Maintenance::CanPassthrough())
 {
