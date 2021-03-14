@@ -33,44 +33,43 @@
 
 {% block content %}
 <div class="ml-auto mr-auto zeusError">
-<div class="card shadow mb-4 mt-4">
-<div class="card-body">
-<div class="row">
-{# set responseCode = 418 #}
-<img class="col-sm d-none d-lg-block" height="250" width="250" src="{% if errors[responseCode].image is defined %}{{ errors[responseCode].image|raw }}{% else %}{{ env.Domain.Scheme ~ '://cdn.' ~ env.Domain.Url ~ '/IMG/ErrorPages/unknown.png' }}{% endif %}"/>
-<div class="col-sm text-center d-flex flex-column p-2">
-<h4><b>{{ responseCode }} | </b>{% if errors[responseCode].title is defined %}{{ errors[responseCode].title|raw }}{% else %}{{ 'Error' }}{% endif %}</h4>
-<h5>{% if errors[responseCode].description is defined %}{{ errors[responseCode].description|raw }}{% else %}{{ 'An error occurred whilst attempting to fetch the page.' }}{% endif %}</h5>
-<div class="float-center mt-auto">
-<a class="btn btn-secondary" id="backButton">Back</a>
-<a class="btn btn-primary" href="{{ env.Domain.Scheme ~ '://www.' ~ env.Domain.Url ~ '/Home' }}">Home</a>
-</div>
-</div>
-</div>
-{% if detail is defined %}
-<h5 class="mt-5">Error Detail:</h5>
-<div class="bg-dark p-3">
-<code>
-{{ detail }}
-</code>
-</div>
-{% endif %}
-{% if trace is defined %}
-<h5 class="mt-3">Exception:</h5>
-<div class="bg-dark p-3">
-<code>
-{{ trace }}
-</code>
-</div>
-{% endif %}
-</div>
-</div>
-</div>
+	<div class="card shadow mb-4 mt-4">
+		<div class="card-body">
+			<div class="row">
+				{# set responseCode = 418 #}
+				<img class="col-sm d-none d-lg-block" height="250" width="250" src="{% if errors[responseCode].image is defined %}{{ errors[responseCode].image|raw }}{% else %}{{ env.Domain.Scheme ~ '://cdn.' ~ env.Domain.Url ~ '/IMG/ErrorPages/unknown.png' }}{% endif %}"/>
+				<div class="col-sm text-center d-flex flex-column p-2">
+					<h4><b>{{ responseCode }} | </b>{% if errors[responseCode].title is defined %}{{ errors[responseCode].title|raw }}{% else %}{{ 'Error' }}{% endif %}</h4>
+					<h5>{% if errors[responseCode].description is defined %}{{ errors[responseCode].description|raw }}{% else %}{{ 'An error occurred whilst attempting to fetch the page.' }}{% endif %}</h5>
+					<div class="float-center mt-auto">
+						<a class="btn btn-secondary" id="backButton">Back</a>
+						<a class="btn btn-primary" href="{{ env.Domain.Scheme ~ '://www.' ~ env.Domain.Url ~ '/Home' }}">Home</a>
+					</div>
+				</div>
+			</div>
+			{% if detail is defined %}
+			<h5 class="mt-5">Error Detail:</h5>
+			<div class="bg-dark p-3">
+				<code>
+					{{ detail }}
+				</code>
+			</div>
+			{% endif %}
+			{% if trace is defined %}
+			<h5 class="mt-3">Exception:</h5>
+			<div class="bg-dark p-3">
+				<code>
+					{{ trace }}
+				</code>
+			</div>
+			{% endif %}
+		</div>
+	</div>
 </div>
 <script>
-if(typeof prevPage != 'undefined')
-{
-	$('#backButton').attr('href', prevPage);
-}
+	if(typeof prevPage != 'undefined')
+	{
+		$('#backButton').attr('href', prevPage);
+	}
 </script>
 {% endblock %}
