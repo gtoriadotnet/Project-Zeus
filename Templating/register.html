@@ -3,94 +3,96 @@
 {% block content %}
 <div class="mb-3"></div>
 {% if allowed == 1 %}
-<h1 class="mb-3">Sign Up</h1>
-<div class="card mb-4">
-	<div class="card-body">
-		{#
-		<div class="row no-gutters">
-			<div class="col-5">
-			#}
-				<div class="form-group">
-					<label for="registerBirthday">Birthday</label>
-					<div class="input-group" id="registerBirthday">
-						<select class="custom-select">
-							<option selected>Month</option>
-							<option value="1">One</option>
-							<option value="2">Two</option>
-							<option value="3">Three</option>
-						</select>
-						<select class="custom-select">
-							<option selected>Day</option>
-							{% for day in 1..30 %}
-								<option value="{{ day }}">{{ day }}</option>
-							{% endfor %}
-						</select>
-						<select class="custom-select">
-							<option selected>Year</option>
-							{% for year in "now"|date("Y") - 1.."now"|date("Y") - 100 %}
-								<option value="{{ year }}">{{ year }}</option>
-							{% endfor %}
-						</select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="registerUsername">Username</label>
-					<input type="username" class="form-control" id="registerUsername" placeholder="Alphanumeric characters and underscores only" autocomplete="off">
-				</div>
-				<div class="form-group">
-					<label for="registerUsername">Email</label>
-					<input type="email" class="form-control" id="registerEmail" placeholder="Email (will be verified)" autocomplete="off">
-				</div>
-				<div class="form-group">
-					<label for="registerPassword">Password</label>
-					<input type="password" class="form-control" id="registerUsername" placeholder="Make your password unique!" autocomplete="off">
-				</div>
-				<div class="form-group">
-					<label for="registerConfirm">Confirm Password</label>
-					<input type="password" class="form-control" id="registerConfirm" placeholder="Password (again)" autocomplete="off">
-				</div>
-				<div class="form-group">
-					<label for="registerGender">Gender</label>
-					<div class="btn-group btn-group-toggle w-100" id="registerGender">
-						<label class="btn btn-primary" for="male">
-							<input type="radio" name="gender" id="male" autocomplete="off">
-							<h4 class="mb-0"><i class="fas fa-male"></i></h4>
-						</label>
-						<label class="btn btn-danger" for="female">
-							<input type="radio" name="gender" id="female" autocomplete="off">
-							<h4 class="mb-0"><i class="fas fa-female"></i></h4>
-						</label>
-					</div>
-				</div>
-				<button class="btn btn-success mt-2 w-100" id="signUpBtn">Sign Up</button>
-			{#</div>#}
+<div class="w-50 ml-auto mr-auto">
+	<h1 class="mb-3">Sign Up</h1>
+	<div class="card mb-4">
+		<div class="card-body">
 			{#
-			<div class="col-2 d-flex justify-content-center align-items-center">
-				<h3><b>OR</b></h3>
-			</div>
-			<div class="col-5">
-				<center><h5 class="font-weight-bold">Already have an account?</h5></center>
-				<div class="form-group mt-3">
-					<label for="loginUsername">Username</label>
-					<input type="username" class="form-control" id="loginUsername" placeholder="Username">
+			<div class="row no-gutters">
+				<div class="col-5">
+				#}
+					<div class="form-group">
+						<label for="registerBirthday">Birthday</label>
+						<div class="input-group" id="registerBirthday">
+							<select class="custom-select">
+								<option selected>Month</option>
+								<option value="1">One</option>
+								<option value="2">Two</option>
+								<option value="3">Three</option>
+							</select>
+							<select class="custom-select">
+								<option selected>Day</option>
+								{% for day in 1..30 %}
+									<option value="{{ day }}">{{ day }}</option>
+								{% endfor %}
+							</select>
+							<select class="custom-select">
+								<option selected>Year</option>
+								{% for year in "now"|date("Y") - 1.."now"|date("Y") - 100 %}
+									<option value="{{ year }}">{{ year }}</option>
+								{% endfor %}
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="registerUsername">Username</label>
+						<input type="username" class="form-control" id="registerUsername" placeholder="Alphanumeric characters and underscores only" autocomplete="off">
+					</div>
+					<div class="form-group">
+						<label for="registerUsername">Email</label>
+						<input type="email" class="form-control" id="registerEmail" placeholder="Email (will be verified)" autocomplete="off">
+					</div>
+					<div class="form-group">
+						<label for="registerPassword">Password</label>
+						<input type="password" class="form-control" id="registerUsername" placeholder="Make your password unique!" autocomplete="off">
+					</div>
+					<div class="form-group">
+						<label for="registerConfirm">Confirm Password</label>
+						<input type="password" class="form-control" id="registerConfirm" placeholder="Password (again)" autocomplete="off">
+					</div>
+					<div class="form-group">
+						<label for="registerGender">Gender</label>
+						<div class="btn-group btn-group-toggle w-100" id="registerGender">
+							<label class="btn btn-primary" for="male">
+								<input type="radio" name="gender" id="male" autocomplete="off">
+								<h4 class="mb-0"><i class="fas fa-male"></i></h4>
+							</label>
+							<label class="btn btn-danger" for="female">
+								<input type="radio" name="gender" id="female" autocomplete="off">
+								<h4 class="mb-0"><i class="fas fa-female"></i></h4>
+							</label>
+						</div>
+					</div>
+					<button class="btn btn-success mt-2 w-100" id="signUpBtn">Sign Up</button>
+				{#</div>#}
+				{#
+				<div class="col-2 d-flex justify-content-center align-items-center">
+					<h3><b>OR</b></h3>
 				</div>
-				<div class="form-group">
-					<label for="loginPassword">Password</label>
-					<input type="password" class="form-control" id="loginUsername" placeholder="Password">
+				<div class="col-5">
+					<center><h5 class="font-weight-bold">Already have an account?</h5></center>
+					<div class="form-group mt-3">
+						<label for="loginUsername">Username</label>
+						<input type="username" class="form-control" id="loginUsername" placeholder="Username">
+					</div>
+					<div class="form-group">
+						<label for="loginPassword">Password</label>
+						<input type="password" class="form-control" id="loginUsername" placeholder="Password">
+					</div>
+					<div class="mt-4">
+						<a class="float-left pt-1" href="/login/resetpassword" target="_blank">Forgot your password?</a>
+						<button class="btn btn-success float-right" id="logInBtn">Log In</button>
+					</div>
 				</div>
-				<div class="mt-4">
-					<a class="float-left pt-1" href="/login/resetpassword" target="_blank">Forgot your password?</a>
-					<button class="btn btn-success float-right" id="logInBtn">Log In</button>
-				</div>
-			</div>
-			#}
-		{#</div>#}
-		<hr class="mb-3 mt-3">
-		<h3 class="mb-2">You don't need an account to play {{ env.Name }}!</h3>
-		<h5 class="font-weight-light mb-0">You can start playing right now, as a guest!<a class="btn btn-primary ml-3 p-1" href="/games">Play as Guest</a></h5>
-	</div>
-	<div class="card-footer text-muted">
-		All passwords are hashed with <a href="https://en.wikipedia.org/wiki/Bcrypt" target="_blank">bcrypt</a> and cannot be viewed by our administrators.
+				#}
+			{#</div>#}
+			<hr class="mb-3 mt-3">
+			<h3 class="mb-2">You don't need an account to play {{ env.Name }}!</h3>
+			<h5 class="font-weight-light mb-0">You can start playing right now, as a guest!<a class="btn btn-primary ml-3 p-1" href="/games">Play as Guest</a></h5>
+		</div>
+		<div class="card-footer text-muted">
+			All passwords are hashed with <a href="https://en.wikipedia.org/wiki/Bcrypt" target="_blank">bcrypt</a> and cannot be viewed by our administrators.
+		</div>
 	</div>
 </div>
 {% else %}
